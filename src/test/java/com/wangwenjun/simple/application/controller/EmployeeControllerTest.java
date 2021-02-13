@@ -49,4 +49,26 @@ public class EmployeeControllerTest {
             .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
             .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", equalTo("Alex")));
   }
+
+  @Test
+  public void getSpecificEmployeeAPI() throws Exception {
+    mvc.perform(MockMvcRequestBuilders
+            .get("/employee/1")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name", equalTo("Alex")));
+  }
+
+  @Test
+  public void getSpecificEmployeeNotExistAPI() throws Exception {
+    mvc.perform(MockMvcRequestBuilders
+            .get("/employee/1000")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().is4xxClientError());
+  }
+
+
 }
