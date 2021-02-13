@@ -233,4 +233,17 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <name>user release version</name>
+            <url>http://192.168.88.109:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>user snapshots version</name>
+            <url>http://192.168.88.109:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
