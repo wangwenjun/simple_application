@@ -3,6 +3,7 @@ package com.wangwenjun.simple.application.controller;
 import com.wangwenjun.simple.application.domain.Employee;
 import com.wangwenjun.simple.application.exception.ApiException;
 import com.wangwenjun.simple.application.service.EmployeeService;
+import java.util.Collections;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class EmployeeController {
       if (null != employees) {
         response = new ResponseEntity<>(employees, HttpStatus.OK);
       } else {
-        response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        response = new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
       }
       return response;
     } catch (Exception e) {

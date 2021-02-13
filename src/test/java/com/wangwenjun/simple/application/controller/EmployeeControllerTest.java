@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -45,7 +46,7 @@ public class EmployeeControllerTest {
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.employee").exists())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.employee[*].employeeId").isNotEmpty());
+            .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", equalTo("Alex")));
   }
 }
