@@ -22,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -122,4 +123,19 @@ public class EmployeeControllerTest {
             .andExpect(status().is4xxClientError());
   }
 
+  @Test
+  public void createSpecificEmployeeAPI() throws Exception {
+    ObjectMapper mapper = new ObjectMapper();
+    Employee employee = new Employee("Andy Liu", "China", new Date(System.currentTimeMillis()),
+            new Date(System.currentTimeMillis()), "Andy Liu Remark");
+    mvc.perform(MockMvcRequestBuilders
+            .post("/employee")
+            .content(mapper.writeValueAsString(employee))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name", equalTo("Andy Liu")))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id", greaterThan(3)));
+  }
 }
