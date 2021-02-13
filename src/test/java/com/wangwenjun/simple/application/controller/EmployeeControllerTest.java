@@ -70,5 +70,23 @@ public class EmployeeControllerTest {
             .andExpect(status().is4xxClientError());
   }
 
+  @Test
+  public void deleteSpecificEmployeeAPI() throws Exception {
+    mvc.perform(MockMvcRequestBuilders
+            .delete("/employee/3")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk());
+  }
+
+  @Test
+  public void deleteSpecificEmployeeNotExistAPI() throws Exception {
+    mvc.perform(MockMvcRequestBuilders
+            .delete("/employee/1000")
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().is4xxClientError());
+  }
+
 
 }
