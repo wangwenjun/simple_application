@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -51,7 +52,7 @@ public class EmployeeControllerTest {
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", equalTo("Alex")));
+            .andExpect(MockMvcResultMatchers.jsonPath("$.[0].name", containsString("Alex")));
   }
 
   @Test
@@ -62,7 +63,7 @@ public class EmployeeControllerTest {
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
-            .andExpect(MockMvcResultMatchers.jsonPath("$.name", equalTo("Alex")));
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name", containsString("Alex")));
   }
 
   @Test
