@@ -7,17 +7,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+    open-in-view: false
     naming:
       physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   datasource:
-    url: jdbc:mysql://192.168.88.7:3306/simple_application
-    driverClassName: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://192.168.88.7:3306/simple_application?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: root
 ---
 spring:
-  profiles:
-    active: test
+  config:
+    activate:
+      on-profile: test
   jpa:
     hibernate:
       ddl-auto: update
