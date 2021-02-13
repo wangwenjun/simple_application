@@ -1,6 +1,9 @@
 package com.wangwenjun.simple.application.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wangwenjun.simple.application.SimpleApplication;
+import com.wangwenjun.simple.application.domain.Employee;
+import java.sql.Date;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -88,5 +91,35 @@ public class EmployeeControllerTest {
             .andExpect(status().is4xxClientError());
   }
 
+  @Test
+  public void updateSpecificEmployeeAPI() throws Exception {
+    ObjectMapper mapper = new ObjectMapper();
+    Employee employee = new Employee("Alex Wang", "China", new Date(System.currentTimeMillis()),
+            new Date(System.currentTimeMillis()), "Alex Remark");
+    employee.setId(1);
+    mvc.perform(MockMvcRequestBuilders
+            .put("/employee")
+            .content(mapper.writeValueAsString(employee))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$.name", equalTo("Alex Wang")));
+  }
+
+  @Test
+  public void updateSpecificEmployeeNotExistAPI() throws Exception {
+    ObjectMapper mapper = new ObjectMapper();
+    Employee employee = new Employee("Alex Wang", "China", new Date(System.currentTimeMillis()),
+            new Date(System.currentTimeMillis()), "Alex Remark");
+    employee.setId(1000);
+    mvc.perform(MockMvcRequestBuilders
+            .put("/employee")
+            .content(mapper.writeValueAsString(employee))
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            .andDo(print())
+            .andExpect(status().is4xxClientError());
+  }
 
 }
