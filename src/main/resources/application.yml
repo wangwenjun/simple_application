@@ -1,0 +1,28 @@
+logging:
+  level:
+    root: INFO
+server:
+  port: 18231
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    url: jdbc:mysql://192.168.88.7:3306/simple_application
+    driverClassName: org.gjt.mm.mysql.Driver
+    username: root
+    password: root
+---
+spring:
+  profiles:
+    active: test
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
