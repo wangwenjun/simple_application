@@ -27,12 +27,9 @@ public class InitialTableRunner implements CommandLineRunner {
 
     LOG.info("initialize the data...");
     List<Employee> employees = Arrays.asList(
-            new Employee("Alex", "China", new Date(System.currentTimeMillis()),
-                    new Date(System.currentTimeMillis()), "Alex Remark"),
-            new Employee("Tina", "China", new Date(System.currentTimeMillis()),
-                    new Date(System.currentTimeMillis()), "Tina Remark"),
-            new Employee("Jack", "America", new Date(System.currentTimeMillis()),
-                    new Date(System.currentTimeMillis()), "Jack Remark")
+            new Employee("Alex", "China", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), "Alex Remark"),
+            new Employee("Tina", "China", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), "Tina Remark"),
+            new Employee("Jack", "America", new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), "Jack Remark")
     );
     LOG.info("initial data finished and effected records [{}]", employees.size());
     employeeService.batchSave(employees);
