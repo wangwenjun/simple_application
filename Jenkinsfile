@@ -32,7 +32,6 @@ pipeline{
 
         stage("Deployment to Apps Host"){
             steps{
-                ansiblePlaybook  playbook: 'my_playbook.yml', extraVars: 'version=0.0.1-SNAPSHOT'
                 ansiColor('xterm') {
                     ansiblePlaybook(
                         playbook: '/home/wangwenjun/training/ansible/simple_application_deploy.yml',
