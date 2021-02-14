@@ -1,6 +1,3 @@
 #!/bin/bash
-base_dir=$(cd `dirname $0`;pwd)
-parent_dir=$(cd `dirname $base_dir`;pwd)
-CLASSPATH=.:$parent_dir/lib/*
-MAIN_CLASS=com.wangwenjun.simple.application.SimpleApplication
-nohup java -cp $CLASSPATH:$parent_dir/conf/* $MAIN_CLASS &
+current=/home/wangwenjun/apps/simple_application/current
+nohup /opt/jdk1.8.0_201/bin/java -jar /home/wangwenjun/apps/simple_application/current/lib/simple_application*.jar &
