@@ -43,7 +43,7 @@ pipeline{
 
         stage("Function Acceptance Testing"){
             steps{
-		echo "Sleep 120 seconds make sure simple application startup done."
+		        echo "Sleep 120 seconds make sure simple application startup done."
                 sleep(time: 120, unit: "SECONDS")
                 build job: 'DEV_Simple_Application_Acceptance', wait: true
             }
